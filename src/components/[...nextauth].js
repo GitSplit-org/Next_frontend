@@ -1,6 +1,6 @@
 // pages/api/auth/[...nextauth].js
-import NextAuth from 'next-auth';
-import Providers from 'next-auth/providers';
+import NextAuth from "next-auth";
+import Providers from "next-auth/providers";
 
 export default NextAuth({
   providers: [
@@ -10,17 +10,22 @@ export default NextAuth({
     }),
   ],
   pages: {
-    signIn: '/auth/signin',
+    signIn: "/auth/signin",
   },
   callbacks: {
-    async jwt(token, user) {
-      if (user) {
-        token.id = user.id;
+    async jwt({ token, account, profile }) {
+      if (account) {
+        token.accessToken = token.access_token;
       }
       return token;
     },
-    async session(session, token) {
-      session.user.id = token.id;
+    async session({ session, token, user }) {
+      if (user) {
+        session.user.id = user.id;
+        token;
+        user;
+      }
+
       return session;
     },
   },
