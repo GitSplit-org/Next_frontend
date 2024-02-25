@@ -18,6 +18,7 @@ const ProjectForm = () => {
   const [socialMedia2, setSocialMedia2] = useState("");
   const [socialMedia3, setSocialMedia3] = useState("");
   const [image, setImage] = useState(null);
+  const [imageBase64, setImageBase64] = useState("");
   const [wordCount, setWordCount] = useState(0);
   const maxWordCount = 200;
 
@@ -31,21 +32,23 @@ const ProjectForm = () => {
       setDescription(words.slice(0, maxWordCount).join(" "));
     }
   };
-
+  const handleImageSet = (e) => {
+    e.preventDefault();
+    let reader = new FileReader();
+    let file = e.target.files[0];
+    console.log(file);
+  };
+  const imageConvert = (image) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(image);
+    reader.onload = () => {
+      return reader.result;
+    };
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(
-      "data" +
-        {
-          projectName,
-          description,
-          githubLink,
-          socialMedia1,
-          socialMedia2,
-          socialMedia3,
-          image,
-        }
-    );
+    const imgbase64 = await imageConvert(image);
+    console.log("2  ", imgbase64);
 
     try {
       console.log(BACKEND_URL);
@@ -57,7 +60,7 @@ const ProjectForm = () => {
         instagram: socialMedia2,
         linkedin: socialMedia3,
         owner: address,
-        image: "test",
+        image: imgbase64,
       });
 
       const responseData = await response;
