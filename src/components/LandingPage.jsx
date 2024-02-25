@@ -3,10 +3,18 @@ import React from "react";
 const LandingPage = () => {
   return (
     <>
-      <div className=" text-3xl font-extrabold flex justify-center pt-10 pb-5">
-        <p>Solutions we’re building to support digital communities</p>
+    
+    <div className="flex flex-col items-center justify-center h-screen pb-20">
+      <h1 className="text-4xl font-bold mb-4">Support Open Source Development</h1>
+      <p className="text-2xl">Donate to GitHub Projects</p>
+      <div className="pt-2">
+      <button className=" border-2 bg-stone-600 text-white p-1">Get Started</button>
+      <button className="pl-4">learn more..</button>
       </div>
-      <div className="flex  h-1/2 pl-20 pr-20 pt-10">
+      
+    </div>
+    <div className=" bg-slate-400 h-screen w-screen">
+      <div className="flex h-5/6 pl-20 pr-20 pt-10 ">
         <div className="w-1/2  p-4 ease-in-out bg-gradient-to-t from-white to-white hover:to-lime-100">
           {/* Content for the left pane */}
           <h2 className="text-xl font-bold">Gitsplit Grants</h2>
@@ -15,7 +23,7 @@ const LandingPage = () => {
             Participate in our quartely grants programfor open-source &
             impact-oriented projects.
           </p>
-          <button className="border-2  rounded-md border-black border-spacing-2 ">
+          <button className="border-2  rounded-md border-black p-1 ">
             view Grants{" "}
           </button>
         </div>
@@ -27,15 +35,22 @@ const LandingPage = () => {
             Easily manage your onchine program with our customizable grants
             solution .
           </p>
-          <button className="border-2  rounded-md border-black border-spacing-2 ">
+          <button className="border-2  rounded-md border-black p-1 ">
             view Grants{" "}
           </button>
         </div>
       </div>
-      <div className="w-screen h-screen pt-10">
-
-        <p className="text-4xl font-extrabold text-cyan-900 flex justify-center">Raise money with full transparency</p>
       </div>
+      <div className="w-screen h-screen pt-10 ">
+
+        <p className="text-4xl font-extrabold text-cyan-900 flex justify-center ">Raise money with full transparency</p>
+        <p className=" text-lg font-bold  pt-2 flex justify-center"> We do the paperwork so you can focus on your mission.</p>
+        <div className="flex justify-center">
+        <img src="https://www.surveylegend.com/wordpress/wp-content/uploads/2021/02/organizational-culture-2.png" alt="React Image" width={600} />
+        </div>
+      </div>
+
+
     </>
   );
 };
