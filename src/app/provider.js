@@ -21,6 +21,7 @@ import {
   polygon,
   sepolia,
   zora,
+  polygonMumbai,
 } from "wagmi/chains";
 import "@rainbow-me/rainbowkit/styles.css";
 
@@ -32,6 +33,7 @@ const { chains, publicClient, webSocketPublicClient } = configureChains(
     arbitrum,
     base,
     zora,
+    polygonMumbai,
     ...(process.env.NEXT_PUBLIC_ENABLE_TESTNETS === "true" ? [sepolia] : []),
   ],
   [publicProvider()]
