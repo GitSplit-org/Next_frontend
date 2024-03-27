@@ -13,7 +13,7 @@ import {
 import { Contract, ethers } from "ethers";
 import abi from "../../artifacts/contracts/GitSplit.json";
 import EthersContract from "../../lib/ethers-contract";
-
+const contractAddress = process.env.NEXT_PUBLIC_CONTRACT_ADDRESS;
 const Page = () => {
   const { address, connector, isConnected } = useAccount();
   const [Sess, setSess] = useState();
@@ -26,10 +26,7 @@ const Page = () => {
   };
   const handleLink = async (event) => {
     event.preventDefault();
-    const GitSplitContract = await EthersContract(
-      "0x36D67742029666A4a006Cd9D77dBF314DE2BEa40",
-      abi.abi
-    );
+    const GitSplitContract = await EthersContract(contractAddress, abi.abi);
     try {
       const transaction = await GitSplitContract.assignAddressToUsername(
         "inciner8r",
@@ -41,8 +38,6 @@ const Page = () => {
     } catch (error) {
       console.error("Error assigning address to username:", error);
     }
-    console.log(split);
-    console.log(usernames);
   };
   return (
     <div className="flex items-center justify-center mt-24">

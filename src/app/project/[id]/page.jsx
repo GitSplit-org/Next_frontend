@@ -17,6 +17,7 @@ import {
 import { Contract, ethers } from "ethers";
 import abi from "../../../artifacts/contracts/GitSplit.json";
 import EthersContract from "../../../lib/ethers-contract";
+const contractAddress = process.env.NEXT_PUBLIC_CONTRACT_ADDRESS;
 
 const Profile = () => {
   const searchParams = useSearchParams();
@@ -88,14 +89,13 @@ const Profile = () => {
     const usernames = [];
     Contributors.forEach((contributor) => {
       const splitAmount = ((contributor.percentage / 100) * amount).toFixed(2);
+      console.log(splitAmount);
       split.push(ethers.utils.parseEther(splitAmount));
       usernames.push(contributor.login);
     });
-    const GitSplitContract = await EthersContract(
-      "0x36D67742029666A4a006Cd9D77dBF314DE2BEa40",
-      abi.abi
-    );
+    const GitSplitContract = await EthersContract(contractAddress, abi.abi);
     try {
+      console.log(amount);
       const transaction = await GitSplitContract.deposit(usernames, split, {
         value: ethers.utils.parseEther(amount),
       });
